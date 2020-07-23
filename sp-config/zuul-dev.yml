@@ -1,7 +1,15 @@
 spring:
   application:
     name: zuul
-    
+  cloud:
+    config:
+      override-none: true
+  rabbitmq:
+    host: 192.168.57.128
+    port: 5672
+    username: admin
+    password: admin
+
 server:
   port: 3001
   
@@ -15,7 +23,7 @@ zuul:
     
 ribbon:
   ConnectTimeout: 1000
-  ReadTimeout: 2000
+  ReadTimeout: 1000
   MaxAutoRetriesNextServer: 1
   MaxAutoRetries: 1
   
@@ -26,9 +34,9 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 500
+            
 management:
   endpoints:
     web:
       exposure:
         include: hystrix.stream
-            
